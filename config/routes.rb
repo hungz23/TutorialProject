@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
+  get 'password_resets/new'
+
+  get 'password_resets/edit'
+
   root 'static_pages#home'
   get 'help' => 'static_pages#help'
   get 'about' => 'static_pages#about'
   get 'contact' => 'static_pages#contact'
   get 'signup' => 'users#new'
-  post '/signup' => 'users#create'
+  #post '/signup' => 'users#create'
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
@@ -13,6 +17,7 @@ Rails.application.routes.draw do
   resources :users
   resources :account_activations, only: [:edit]
   resources :microposts, only: [:create, :destroy]
+  resources :password_resets, only: [:new, :create, :edit, :update]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
